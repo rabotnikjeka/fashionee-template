@@ -1,5 +1,5 @@
 import "../styles/cart.css";
-const Cart = ({ cartProducts, id, name, price, oldPrice, image }) => {
+const Cart = ({ name, price, oldPrice, image }) => {
   return (
     <div className="cart-product" data-testid="cart-page">
       <div className="photo">

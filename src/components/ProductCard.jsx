@@ -4,7 +4,6 @@ const ProductCard = ({
   name,
   price,
   oldPrice,
-  color,
   image,
   isSale,
   isNew,

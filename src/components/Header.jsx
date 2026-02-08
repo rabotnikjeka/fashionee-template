@@ -71,8 +71,8 @@ function Header({ favoriteCount, cartCount, onChangePage }) {
           </div>
           <div className="header-right-side-icons">
             <button
-              className="cart-button-navigation"
               data-testid="cart-btn"
+              className="cart-button-navigation"
               onClick={() => onChangePage("cart")}
             >
               <img src="/icons/cart.svg" alt="" />
@@ -92,17 +92,16 @@ function Header({ favoriteCount, cartCount, onChangePage }) {
             <a href="" className="navigation-item border">
               Home
             </a>
-            <a
-              href=""
-              className="navigation-item active"
+            <button
               data-testid="shop-btn"
+              className="navigation-item active"
               onClick={(event) => {
                 event.preventDefault();
                 onChangePage("shop");
               }}
             >
               Shop
-            </a>
+            </button>
           </div>
           <div className="border-line"></div>
           <img src="/icons/dotsIcon12x12.svg" alt="" className="dotsIcon12" />

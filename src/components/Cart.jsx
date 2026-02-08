@@ -1,7 +1,7 @@
 import "../styles/cart.css";
 const Cart = ({ name, price, oldPrice, image }) => {
   return (
-    <div className="cart-product" data-testid="cart-page">
+    <div className="cart-product">
       <div className="photo">
         <img src={image} alt={name} className="cart-image" />
       </div>

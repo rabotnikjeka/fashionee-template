@@ -5,7 +5,7 @@ function CartContainer({ products, cart }) {
   const isCartProducts = products.filter((item) => cart.includes(item.id));
 
   return (
-    <div className="cart-container">
+    <div data-testid="cart-page" className="cart-container">
       <div className="order-wrapper">
         <div className="product-list">
           {isCartProducts.map((item) => {

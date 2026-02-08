@@ -2,7 +2,9 @@ import Cart from "./Cart";
 import "../styles/cart.css";
 
 function CartContainer({ products, cart }) {
-  const isCartProducts = products.filter((item) => cart.includes(item.id));
+  const isCartProducts = products.filter((item) =>
+    cart.some((cartItem) => cartItem.id === item.id),
+  );
 
   return (
     <div data-testid="cart-page" className="cart-container">

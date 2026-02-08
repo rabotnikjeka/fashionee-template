@@ -41,9 +41,10 @@ function RightSide({ products, onLike, favorites, onCart, offCart, cart }) {
       <div className="showcase">
         {visibleProducts.map((item) => {
           const isFavorite = favorites.includes(item.id);
-          const isOnCart = cart.includes(item.id);
-
-          const countOfCartId = cart.filter((id) => id === item.id).length;
+          const isOnCart = cart.some((cartItem) => cartItem.id === item.id);
+          const countOfCartId = cart.find(
+            (cartItem) => cartItem.id === item.id,
+          )?.quantity;
 
           return (
             <ProductCard

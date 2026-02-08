@@ -47,14 +47,23 @@ function App() {
 
   const addCart = function (id) {
     setCart((prevState) => {
-      return [...prevState, id];
+      if (prevState.some((item) => item.id === id)) {
+        return prevState.map((item) =>
+          item.id === id ? { id, quantity: item.quantity + 1 } : item,
+        );
+      } else {
+        return [...prevState, { id, quantity: 1 }];
+      }
     });
   };
 
   const removeCart = function (id) {
     setCart((prevState) => {
-      const indexOfId = prevState.indexOf(id);
-      return indexOfId !== -1 ? prevState.toSpliced(indexOfId, 1) : prevState;
+      return prevState
+        .map((item) =>
+          item.id === id ? { id, quantity: item.quantity - 1 } : item,
+        )
+        .filter((item) => item.quantity !== 0);
     });
   };
 
@@ -76,7 +85,7 @@ function App() {
     <div className="app">
       <Header
         favoriteCount={favorites.length}
-        cartCount={cart.length}
+        cartCount={cart.reduce((total, item) => total + item.quantity, 0)}
         onChangePage={onChangePage}
       />
       <ContentBlock>{pages[currentPage]}</ContentBlock>

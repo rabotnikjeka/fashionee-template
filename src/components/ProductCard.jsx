@@ -43,7 +43,6 @@ const ProductCard = ({
       <div className="product-info">
         <div className="product-name">{name}</div>
         <div className="product-price-buy-wrapper">
-          {" "}
           <div className="product-price-wrapper">
             <div className="product-current-price">{price}</div>
             {oldPrice && <div className="product-old-price">{oldPrice}</div>}
@@ -61,7 +60,7 @@ const ProductCard = ({
             </div>
             <div
               className={
-                countOfCartId !== 0
+                countOfCartId
                   ? "add-to-cart-counter active"
                   : "add-to-cart-counter "
               }

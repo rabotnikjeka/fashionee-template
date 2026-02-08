@@ -222,6 +222,16 @@
   justify-content: center;
   align-items: center;
 }
+
+.header
+  .header-upper
+  .header-right-side
+  .header-right-side-icons
+  .cart-button-navigation {
+  background: none;
+  border: none;
+}
+
 .header .header-upper .header-right-side .header-right-side-icons img {
   cursor: pointer;
 }

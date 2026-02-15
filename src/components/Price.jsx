@@ -3,15 +3,9 @@ const Price = ({
   priceMax,
   defaultMin,
   defaultMax,
-  onPriceChange,
+  onChangeMin,
+  onChangeMax,
 }) => {
-  if (defaultMin === 0 && defaultMax === 0) {
-    return null;
-  }
-
-  const displayMin = priceMin === "" ? String(defaultMin) : priceMin;
-  const displayMax = priceMax === "" ? String(defaultMax) : priceMax;
-
   return (
     <div className="aside-parameters">
       <div className="parameters-title">Price</div>
@@ -22,25 +16,20 @@ const Price = ({
             placeholder={String(defaultMin)}
             className="input"
             data-testid="price-min-input"
-            value={displayMin}
-            onChange={(e) =>
-              onPriceChange({ min: e.target.value, max: displayMax })
-            }
+            value={priceMin}
+            onChange={(e) => onChangeMin(e.target.value)}
           />
           <input
             type="text"
             placeholder={String(defaultMax)}
             className="input"
             data-testid="price-max-input"
-            value={displayMax}
-            onChange={(e) =>
-              onPriceChange({ min: displayMin, max: e.target.value })
-            }
+            value={priceMax}
+            onChange={(e) => onChangeMax(e.target.value)}
           />
         </div>
       </div>
     </div>
   );
 };
-
 export default Price;

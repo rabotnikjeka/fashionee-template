@@ -1,4 +1,5 @@
 import "../styles/shop.css";
+
 const Price = ({
   priceMin,
   priceMax,
@@ -7,6 +8,11 @@ const Price = ({
   onChangeMin,
   onChangeMax,
 }) => {
+  const displayMin =
+    priceMin !== "" ? priceMin : defaultMin > 0 ? String(defaultMin) : "";
+  const displayMax =
+    priceMax !== "" ? priceMax : defaultMax > 0 ? String(defaultMax) : "";
+
   return (
     <div className="aside-parameters">
       <div className="parameters-title">Price</div>
@@ -17,7 +23,7 @@ const Price = ({
             placeholder={String(defaultMin)}
             className="input"
             data-testid="price-min-input"
-            value={priceMin}
+            value={displayMin}
             onChange={(e) => onChangeMin(e.target.value)}
           />
           <input
@@ -25,7 +31,7 @@ const Price = ({
             placeholder={String(defaultMax)}
             className="input"
             data-testid="price-max-input"
-            value={priceMax}
+            value={displayMax}
             onChange={(e) => onChangeMax(e.target.value)}
           />
         </div>
@@ -33,4 +39,5 @@ const Price = ({
     </div>
   );
 };
+
 export default Price;

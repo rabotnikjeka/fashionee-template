@@ -1,4 +1,6 @@
 import "../styles/shop.css";
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
 const ProductCard = ({
   id,
   name,
@@ -7,18 +9,22 @@ const ProductCard = ({
   image,
   isSale,
   isNew,
-  onLike,
-  isFavorite,
-  isOnCart,
-  onCart,
-  offCart,
-  countOfCartId,
+  categories,
+  color,
 }) => {
+  const { addFavorites, favorites, addCart, removeCart, cart } =
+    useContext(ProductContext);
+  const isFavorite = favorites.includes(id);
+  const isOnCart = cart.some((cartItem) => cartItem.id === id);
+  const countOfCartId = cart.find((cartItem) => cartItem.id === id)?.quantity;
   return (
     <div
       className="product-card"
       data-testid="product-card"
       data-product-id={id}
+      data-categories={categories ? categories.join(",").toLowerCase() : ""}
+      data-color={color ? color.toLowerCase() : ""}
+      data-price={price}
     >
       <div className="product-image">
         <div className="product-top-side">
@@ -30,7 +36,7 @@ const ProductCard = ({
             className="favorite-button"
             data-testid="favorite-btn"
             data-active={isFavorite}
-            onClick={() => onLike(id)}
+            onClick={() => addFavorites(id)}
           >
             <img
               src="/icons/favorites.svg"
@@ -44,13 +50,13 @@ const ProductCard = ({
         <div className="product-name">{name}</div>
         <div className="product-price-buy-wrapper">
           <div className="product-price-wrapper">
-            <div className="product-current-price">{price}</div>
-            {oldPrice && <div className="product-old-price">{oldPrice}</div>}
+            <div className="product-current-price">${price}</div>
+            {oldPrice && <div className="product-old-price">${oldPrice}</div>}
           </div>
           <div className="product-buy-wrapper">
             <div className="button-line-wrapper">
               <button
-                onClick={() => onCart(id)}
+                onClick={() => addCart(id)}
                 className={isOnCart ? "button toBuy active" : "button toBuy"}
                 data-testid="add-to-cart-btn"
               >
@@ -67,7 +73,7 @@ const ProductCard = ({
             >
               <button
                 className="decrement"
-                onClick={() => offCart(id)}
+                onClick={() => removeCart(id)}
                 data-testid="decrease-qty-btn"
               >
                 <img src="/icons/minus.svg" alt="" />
@@ -77,7 +83,7 @@ const ProductCard = ({
               </div>
               <button
                 className="increment"
-                onClick={() => onCart(id)}
+                onClick={() => addCart(id)}
                 data-testid="increase-qty-btn"
               >
                 <img src="/icons/plus.svg" alt="" />
@@ -89,5 +95,4 @@ const ProductCard = ({
     </div>
   );
 };
-
 export default ProductCard;

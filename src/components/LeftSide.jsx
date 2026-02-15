@@ -1,6 +1,62 @@
 import "../styles/shop.css";
-
+import { useState, useContext, useRef } from "react";
+import { ProductContext } from "../context/ProductContext";
+import Categories from "./Categories";
+import Price from "./Price";
+import Colors from "./Colors";
 function LeftSide() {
+  const {
+    allCategories,
+    allColors,
+    minPrice,
+    maxPrice,
+    applyFilters,
+    setSearchQuery,
+  } = useContext(ProductContext);
+  const defaultCategories = [
+    "All",
+    "Men",
+    "Women",
+    "Accessories",
+    "New Arrivals",
+  ];
+  const defaultColors = ["Black", "Blue", "Red", "Yellow", "Green"];
+  const categories =
+    allCategories.length > 0 ? allCategories : defaultCategories;
+  const colors = allColors.length > 0 ? allColors : defaultColors;
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [priceMin, setPriceMin] = useState(String(minPrice));
+  const [priceMax, setPriceMax] = useState(String(maxPrice));
+  const [localSearch, setLocalSearch] = useState("");
+  const debounceTimer = useRef(null);
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setLocalSearch(value);
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+    debounceTimer.current = setTimeout(() => {
+      setSearchQuery(value);
+    }, 300);
+  };
+  const handleToggleColor = (color) => {
+    setSelectedColors((prev) =>
+      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
+    );
+  };
+  const handleApply = () => {
+    const finalMin = priceMin === "" ? String(minPrice) : priceMin;
+    const finalMax = priceMax === "" ? String(maxPrice) : priceMax;
+    setPriceMin(finalMin);
+    setPriceMax(finalMax);
+    applyFilters({
+      category: selectedCategory,
+      colors: selectedColors.map((c) => c.toLowerCase()),
+      priceMin: Number(finalMin),
+      priceMax: Number(finalMax),
+    });
+  };
   return (
     <div className="left-side">
       <div className="search-area">
@@ -9,6 +65,9 @@ function LeftSide() {
             type="text"
             placeholder="Search"
             className="input search-row"
+            data-testid="search-input"
+            value={localSearch}
+            onChange={handleSearchChange}
           />
           <img
             src="/icons/search.svg"
@@ -17,102 +76,38 @@ function LeftSide() {
           />
         </label>
       </div>
-      <div className="aside-parameters">
-        <div className="parameters-title">Categories</div>
-        <div className="parameters-components">
-          <ul className="categories">
-            <li className="category">All</li>
-            <li className="category active">Men</li>
-            <li className="category">Women</li>
-            <li className="category">Accessories</li>
-            <li className="category">New Arrivals</li>
-          </ul>
+      <Categories
+        categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
+      />
+      <Price
+        priceMin={priceMin}
+        priceMax={priceMax}
+        defaultMin={minPrice}
+        defaultMax={maxPrice}
+        onChangeMin={setPriceMin}
+        onChangeMax={setPriceMax}
+      />
+      <Colors
+        colors={colors}
+        selectedColors={selectedColors}
+        onToggleColor={handleToggleColor}
+      />
+      <div className="colors-bottom-side">
+        <div className="deploy-colors">
+          <img src="/icons/deployArrow.svg" alt="" />
+          Deploy
         </div>
-      </div>
-      <div className="aside-parameters">
-        <div className="parameters-title">Price</div>
-        <div className="parameters-components">
-          <div className="price-bar">
-            <input type="text" placeholder="0" className="input" />
-            <input type="text" placeholder="1000" className="input" />
-          </div>
-        </div>
-      </div>
-      <div className="aside-parameters">
-        <div className="parameters-title">Colors</div>
-        <div className="parameters-components">
-          <div className="colors">
-            <div className="color">
-              <input
-                type="checkbox"
-                className="color-checkbox"
-                id="black"
-                name="black"
-                value="black"
-              />
-              <label className="color-checkbox-label" for="black">
-                Black
-              </label>
-            </div>
-            <div className="color">
-              <input
-                type="checkbox"
-                className="color-checkbox"
-                id="blue"
-                name="blue"
-                value="blue"
-              />
-              <label className="color-checkbox-label" for="blue">
-                Blue
-              </label>
-            </div>
-            <div className="color">
-              <input
-                type="checkbox"
-                className="color-checkbox"
-                id="red"
-                name="red"
-                value="red"
-              />
-              <label className="color-checkbox-label" for="red">
-                Red
-              </label>
-            </div>
-            <div className="color">
-              <input
-                type="checkbox"
-                className="color-checkbox"
-                id="yellow"
-                name="yellow"
-                value="yellow"
-              />
-              <label className="color-checkbox-label" for="yellow">
-                Yellow
-              </label>
-            </div>
-            <div className="color">
-              <input
-                type="checkbox"
-                className="color-checkbox"
-                id="green"
-                name="green"
-                value="green"
-              />
-              <label className="color-checkbox-label" for="green">
-                Green
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className="colors-bottom-side">
-          <div className="deploy-colors">
-            <img src="/icons/deployArrow.svg" alt="" />
-            Deploy
-          </div>
-          <div className="button-line-wrapper">
-            <button className="button">Apply Filter</button>
-            <div className="button-line"></div>
-          </div>
+        <div className="button-line-wrapper">
+          <button
+            className="button"
+            data-testid="apply-filter-btn"
+            onClick={handleApply}
+          >
+            Apply Filter
+          </button>
+          <div className="button-line"></div>
         </div>
       </div>
       <div className="aside-parameters">
@@ -164,5 +159,4 @@ function LeftSide() {
     </div>
   );
 }
-
 export default LeftSide;

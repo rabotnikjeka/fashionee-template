@@ -1,5 +1,9 @@
 import "../styles/cart.css";
-const Cart = ({ name, price, oldPrice, image }) => {
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
+const Cart = ({ id, name, price, oldPrice, image, quantity }) => {
+  const { addCart, removeCart, removeFromCart } = useContext(ProductContext);
+  const totalPrice = (price * quantity).toFixed(2);
   return (
     <div className="cart-product">
       <div className="photo">
@@ -9,22 +13,25 @@ const Cart = ({ name, price, oldPrice, image }) => {
         <div className="title">{name}</div>
         <div className="price-wrapper">
           <div className="price-and-quantity">
-            <div className="current-price">{price}</div>
-            <div className="old-price">{oldPrice}</div>
+            <div className="product-current-price">${price}</div>
+            {oldPrice && <div className="product-old-price">${oldPrice}</div>}
             <div className="quantity">
-              <div className="count-button">-</div>
-              <div className="count">1</div>
-              <div className="count-button">+</div>
+              <button className="count-button" onClick={() => removeCart(id)}>
+                -
+              </button>
+              <div className="count">{quantity}</div>
+              <button className="count-button" onClick={() => addCart(id)}>
+                +
+              </button>
             </div>
           </div>
-          <div className="total-price">$35.99</div>
+          <div className="total-price">${totalPrice}</div>
         </div>
-        <div className="close">
-          <img src="./icons/close.svg" alt="" />
-        </div>
+        <button className="close" onClick={() => removeFromCart(id)}>
+          <img src="/icons/close.svg" alt="" />
+        </button>
       </div>
     </div>
   );
 };
-
 export default Cart;

@@ -211,10 +211,11 @@ body {
   display: flex;
   gap: 15px;
 }
-.shop-fill .left-side .aside-parameters .colors-bottom-side .deploy-colors {
+.shop-fill .left-side .deploy-colors {
   display: flex;
   gap: 15px;
   margin-top: 23px;
+  margin-bottom: 40px;
   color: #ff8e8e;
   font-weight: 600;
   font-size: 16px;

@@ -1,32 +1,34 @@
 import "../styles/shop.css";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
 import ProductCard from "./ProductCard";
-
-function RightSide({ products, onLike, favorites, onCart, offCart, cart }) {
+function RightSide() {
+  const { filteredProducts } = useContext(ProductContext);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const arrPages =
     totalPages > 0
       ? Array.from({ length: totalPages }, (empty, i) => i + 1)
       : [];
+  const visibleProducts = filteredProducts.slice(firstIndex, lastIndex);
 
-  const visibleProducts = products.slice(firstIndex, lastIndex);
-
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredProducts]);
   const changePage = function (page) {
     setCurrentPage(page);
   };
-
   return (
     <div className="right-side">
       <div className="count-sort">
         <div className="count">
           <span>There are </span>
-          <span className="bold">{products.length}</span>
+          <span className="bold" data-testid="products-count">
+            {filteredProducts.length}
+          </span>
           <span> products in this category</span>
         </div>
         <div className="sort">
@@ -37,30 +39,11 @@ function RightSide({ products, onLike, favorites, onCart, offCart, cart }) {
           </select>
         </div>
       </div>
-
       <div className="showcase">
-        {visibleProducts.map((item) => {
-          const isFavorite = favorites.includes(item.id);
-          const isOnCart = cart.some((cartItem) => cartItem.id === item.id);
-          const countOfCartId = cart.find(
-            (cartItem) => cartItem.id === item.id,
-          )?.quantity;
-
-          return (
-            <ProductCard
-              key={item.id}
-              {...item}
-              onLike={onLike}
-              isFavorite={isFavorite}
-              onCart={onCart}
-              offCart={offCart}
-              isOnCart={isOnCart}
-              countOfCartId={countOfCartId}
-            />
-          );
-        })}
+        {visibleProducts.map((item) => (
+          <ProductCard key={item.id} {...item} />
+        ))}
       </div>
-
       <div className="pagination">
         <button
           className="button-arrow-left"
@@ -93,5 +76,4 @@ function RightSide({ products, onLike, favorites, onCart, offCart, cart }) {
     </div>
   );
 }
-
 export default RightSide;

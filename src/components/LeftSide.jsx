@@ -1,5 +1,5 @@
 import "../styles/shop.css";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useRef } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Categories from "./Categories";
 import Price from "./Price";

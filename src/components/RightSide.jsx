@@ -27,7 +27,7 @@ function RightSide() {
         <div className="count">
           <span>There are </span>
           <span className="bold" data-testid="products-count">
-            {visibleProducts.length}
+            {filteredProducts.length}
           </span>
           <span> products in this category</span>
         </div>

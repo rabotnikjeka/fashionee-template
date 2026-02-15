@@ -1,9 +1,10 @@
 import "../styles/shop.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Categories from "./Categories";
 import Price from "./Price";
 import Colors from "./Colors";
+
 function LeftSide() {
   const {
     allCategories,
@@ -34,12 +35,36 @@ function LeftSide() {
       prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
     );
   };
+
+  const [localSearch, setLocalSearch] = useState(searchQuery);
+  const debounceTimer = useRef(null);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setLocalSearch(value);
+
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+    debounceTimer.current = setTimeout(() => {
+      setSearchQuery(value);
+    }, 300);
+  };
+
   const handleApply = () => {
+    const finalMin =
+      priceMin === "" || priceMin === null ? String(minPrice) : priceMin;
+    const finalMax =
+      priceMax === "" || priceMax === null ? String(maxPrice) : priceMax;
+
+    setPriceMin(finalMin);
+    setPriceMax(finalMax);
+
     applyFilters({
       category: selectedCategory,
       colors: selectedColors,
-      priceMin: priceMin !== "" ? Number(priceMin) : null,
-      priceMax: priceMax !== "" ? Number(priceMax) : null,
+      priceMin: finalMin,
+      priceMax: finalMax,
     });
   };
   return (
@@ -50,8 +75,9 @@ function LeftSide() {
             type="text"
             placeholder="Search"
             className="input search-row"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            data-testid="search-input"
+            value={localSearch}
+            onChange={handleSearchChange}
           />
           <img
             src="/icons/search.svg"

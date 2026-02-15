@@ -1,7 +1,17 @@
 import "../styles/shop.css";
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
-const ProductCard = ({ id, name, price, oldPrice, image, isSale, isNew }) => {
+const ProductCard = ({
+  id,
+  name,
+  price,
+  oldPrice,
+  image,
+  isSale,
+  isNew,
+  categories,
+  color,
+}) => {
   const { addFavorites, favorites, addCart, removeCart, cart } =
     useContext(ProductContext);
   const isFavorite = favorites.includes(id);
@@ -12,6 +22,8 @@ const ProductCard = ({ id, name, price, oldPrice, image, isSale, isNew }) => {
       className="product-card"
       data-testid="product-card"
       data-product-id={id}
+      data-categories={categories ? categories.join(",").toLowerCase() : ""}
+      data-color={color ? color.toLowerCase() : ""}
     >
       <div className="product-image">
         <div className="product-top-side">

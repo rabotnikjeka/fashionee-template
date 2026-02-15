@@ -71,9 +71,10 @@ function App() {
     const pMax =
       appliedFilters.priceMax !== null ? appliedFilters.priceMax : maxPrice;
     result = result.filter((p) => p.price >= pMin && p.price <= pMax);
-    if (appliedFilters.colors.length > 0) {
+    if (appliedFilters.colors && appliedFilters.colors.length > 0) {
+      const lowerColors = appliedFilters.colors.map((c) => c.toLowerCase());
       result = result.filter(
-        (p) => p.color && appliedFilters.colors.includes(p.color.toLowerCase()),
+        (item) => item.color && lowerColors.includes(item.color.toLowerCase()),
       );
     }
     setFilteredProducts(result);

@@ -1,10 +1,9 @@
 import "../styles/shop.css";
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Categories from "./Categories";
 import Price from "./Price";
 import Colors from "./Colors";
-
 function LeftSide() {
   const {
     allCategories,
@@ -12,7 +11,6 @@ function LeftSide() {
     minPrice,
     maxPrice,
     applyFilters,
-    searchQuery,
     setSearchQuery,
   } = useContext(ProductContext);
   const defaultCategories = [
@@ -30,19 +28,20 @@ function LeftSide() {
   const [selectedColors, setSelectedColors] = useState([]);
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
-  const handleToggleColor = (color) => {
-    setSelectedColors((prev) =>
-      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
-    );
-  };
-
-  const [localSearch, setLocalSearch] = useState(searchQuery);
+  const [localSearch, setLocalSearch] = useState("");
   const debounceTimer = useRef(null);
-
+  // Когда minPrice/maxPrice загрузятся из данных — проставить в value
+  const priceInitialized = useRef(false);
+  useEffect(() => {
+    if (minPrice > 0 && maxPrice > 0 && !priceInitialized.current) {
+      setPriceMin(String(minPrice));
+      setPriceMax(String(maxPrice));
+      priceInitialized.current = true;
+    }
+  }, [minPrice, maxPrice]);
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setLocalSearch(value);
-
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
@@ -50,21 +49,21 @@ function LeftSide() {
       setSearchQuery(value);
     }, 300);
   };
-
+  const handleToggleColor = (color) => {
+    setSelectedColors((prev) =>
+      prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
+    );
+  };
   const handleApply = () => {
-    const finalMin =
-      priceMin === "" || priceMin === null ? String(minPrice) : priceMin;
-    const finalMax =
-      priceMax === "" || priceMax === null ? String(maxPrice) : priceMax;
-
+    const finalMin = priceMin === "" ? String(minPrice) : priceMin;
+    const finalMax = priceMax === "" ? String(maxPrice) : priceMax;
     setPriceMin(finalMin);
     setPriceMax(finalMax);
-
     applyFilters({
       category: selectedCategory,
       colors: selectedColors,
-      priceMin: finalMin,
-      priceMax: finalMax,
+      priceMin: Number(finalMin),
+      priceMax: Number(finalMax),
     });
   };
   return (

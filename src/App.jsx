@@ -21,7 +21,6 @@ function App() {
     priceMax: null,
     colors: [],
   });
-  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const allCategories =
     products.length > 0
@@ -35,6 +34,37 @@ function App() {
     products.length > 0 ? Math.min(...products.map((p) => p.price)) : 0;
   const maxPrice =
     products.length > 0 ? Math.max(...products.map((p) => p.price)) : 1000;
+
+  let filteredProducts = products;
+  if (searchQuery.trim() !== "") {
+    filteredProducts = filteredProducts.filter((p) =>
+      p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+    );
+  }
+  if (appliedFilters.category && appliedFilters.category !== "All") {
+    filteredProducts = filteredProducts.filter(
+      (p) => p.categories && p.categories.includes(appliedFilters.category),
+    );
+  }
+  if (appliedFilters.priceMin !== null || appliedFilters.priceMax !== null) {
+    const pMin =
+      appliedFilters.priceMin !== null
+        ? Number(appliedFilters.priceMin)
+        : minPrice;
+    const pMax =
+      appliedFilters.priceMax !== null
+        ? Number(appliedFilters.priceMax)
+        : maxPrice;
+    filteredProducts = filteredProducts.filter(
+      (p) => p.price >= pMin && p.price <= pMax,
+    );
+  }
+  if (appliedFilters.colors && appliedFilters.colors.length > 0) {
+    const lowerColors = appliedFilters.colors.map((c) => c.toLowerCase());
+    filteredProducts = filteredProducts.filter(
+      (p) => p.color && lowerColors.includes(p.color.toLowerCase()),
+    );
+  }
   const onChangePage = function (pageName) {
     return setCurrentPage(pageName);
   };
@@ -51,36 +81,6 @@ function App() {
         setProducts(data.products);
       });
   }, []);
-  useEffect(() => {
-    if (products.length === 0) return;
-    let result = [...products];
-    if (searchQuery.trim() !== "") {
-      result = result.filter((p) =>
-        p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
-      );
-    }
-    if (appliedFilters.category && appliedFilters.category !== "All") {
-      result = result.filter(
-        (p) => p.categories && p.categories.includes(appliedFilters.category),
-      );
-    }
-    const pMin =
-      appliedFilters.priceMin !== null
-        ? Number(appliedFilters.priceMin)
-        : minPrice;
-    const pMax =
-      appliedFilters.priceMax !== null
-        ? Number(appliedFilters.priceMax)
-        : maxPrice;
-    result = result.filter((p) => p.price >= pMin && p.price <= pMax);
-    if (appliedFilters.colors && appliedFilters.colors.length > 0) {
-      const lowerColors = appliedFilters.colors.map((c) => c.toLowerCase());
-      result = result.filter(
-        (p) => p.color && lowerColors.includes(p.color.toLowerCase()),
-      );
-    }
-    setFilteredProducts(result);
-  }, [products, appliedFilters, searchQuery, minPrice, maxPrice]);
   const applyFilters = function (filters) {
     setAppliedFilters(filters);
   };

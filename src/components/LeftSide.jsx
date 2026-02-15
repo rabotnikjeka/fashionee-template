@@ -31,11 +31,13 @@ function LeftSide() {
   const [priceMax, setPriceMax] = useState("");
   const [localSearch, setLocalSearch] = useState(searchQuery);
   const debounceTimer = useRef(null);
-  // When minPrice/maxPrice load from data, set initial values
+  const priceInitialized = useRef(false);
+
   useEffect(() => {
-    if (minPrice > 0 && maxPrice > 0) {
-      setPriceMin((prev) => (prev === "" ? String(minPrice) : prev));
-      setPriceMax((prev) => (prev === "" ? String(maxPrice) : prev));
+    if (!priceInitialized.current && minPrice > 0 && maxPrice > 0) {
+      setPriceMin(String(minPrice));
+      setPriceMax(String(maxPrice));
+      priceInitialized.current = true;
     }
   }, [minPrice, maxPrice]);
   const handleSearchChange = (e) => {
@@ -60,7 +62,7 @@ function LeftSide() {
     setPriceMax(finalMax);
     applyFilters({
       category: selectedCategory,
-      colors: selectedColors.map((c) => c.toLowerCase()),
+      colors: selectedColors,
       priceMin: Number(finalMin),
       priceMax: Number(finalMax),
     });

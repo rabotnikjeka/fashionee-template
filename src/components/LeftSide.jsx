@@ -11,6 +11,7 @@ function LeftSide() {
     minPrice,
     maxPrice,
     applyFilters,
+    searchQuery,
     setSearchQuery,
   } = useContext(ProductContext);
   const defaultCategories = [
@@ -28,15 +29,13 @@ function LeftSide() {
   const [selectedColors, setSelectedColors] = useState([]);
   const [priceMin, setPriceMin] = useState("");
   const [priceMax, setPriceMax] = useState("");
-  const [localSearch, setLocalSearch] = useState("");
+  const [localSearch, setLocalSearch] = useState(searchQuery);
   const debounceTimer = useRef(null);
-  // Когда minPrice/maxPrice загрузятся из данных — проставить в value
-  const priceInitialized = useRef(false);
+  // When minPrice/maxPrice load from data, set initial values
   useEffect(() => {
-    if (minPrice > 0 && maxPrice > 0 && !priceInitialized.current) {
-      setPriceMin(String(minPrice));
-      setPriceMax(String(maxPrice));
-      priceInitialized.current = true;
+    if (minPrice > 0 && maxPrice > 0) {
+      setPriceMin((prev) => (prev === "" ? String(minPrice) : prev));
+      setPriceMax((prev) => (prev === "" ? String(maxPrice) : prev));
     }
   }, [minPrice, maxPrice]);
   const handleSearchChange = (e) => {
@@ -61,7 +60,7 @@ function LeftSide() {
     setPriceMax(finalMax);
     applyFilters({
       category: selectedCategory,
-      colors: selectedColors,
+      colors: selectedColors.map((c) => c.toLowerCase()),
       priceMin: Number(finalMin),
       priceMax: Number(finalMax),
     });

@@ -15,14 +15,14 @@ function App() {
   );
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState("shop");
-  const [appliedFilters, setAppliedFilters] = useState(
-    JSON.parse(localStorage.getItem("appliedFilters")) || {
-      category: "All",
-      priceMin: null,
-      priceMax: null,
-      colors: [],
-    },
-  );
+  const [appliedFilters, setAppliedFilters] = useState({
+    category: "All",
+    priceMin: null,
+    priceMax: null,
+    colors: [],
+  });
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const allCategories =
     products.length > 0
       ? ["All", ...new Set(products.flatMap((p) => p.categories || []))]
@@ -35,8 +35,6 @@ function App() {
     products.length > 0 ? Math.min(...products.map((p) => p.price)) : 0;
   const maxPrice =
     products.length > 0 ? Math.max(...products.map((p) => p.price)) : 1000;
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const onChangePage = function (pageName) {
     return setCurrentPage(pageName);
   };
@@ -47,14 +45,14 @@ function App() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
   useEffect(() => {
-    localStorage.setItem("appliedFilters", JSON.stringify(appliedFilters));
-  }, [appliedFilters]);
-  useEffect(() => {
     fetch("/products.json")
       .then((response) => response.json())
-      .then((data) => setProducts(data.products));
+      .then((data) => {
+        setProducts(data.products);
+      });
   }, []);
   useEffect(() => {
+    if (products.length === 0) return;
     let result = [...products];
     if (searchQuery.trim() !== "") {
       result = result.filter((p) =>
@@ -67,18 +65,22 @@ function App() {
       );
     }
     const pMin =
-      appliedFilters.priceMin !== null ? appliedFilters.priceMin : minPrice;
+      appliedFilters.priceMin !== null
+        ? Number(appliedFilters.priceMin)
+        : minPrice;
     const pMax =
-      appliedFilters.priceMax !== null ? appliedFilters.priceMax : maxPrice;
+      appliedFilters.priceMax !== null
+        ? Number(appliedFilters.priceMax)
+        : maxPrice;
     result = result.filter((p) => p.price >= pMin && p.price <= pMax);
     if (appliedFilters.colors && appliedFilters.colors.length > 0) {
       const lowerColors = appliedFilters.colors.map((c) => c.toLowerCase());
       result = result.filter(
-        (item) => item.color && lowerColors.includes(item.color.toLowerCase()),
+        (p) => p.color && lowerColors.includes(p.color.toLowerCase()),
       );
     }
     setFilteredProducts(result);
-  }, [products, appliedFilters, minPrice, maxPrice, searchQuery]);
+  }, [products, appliedFilters, searchQuery, minPrice, maxPrice]);
   const applyFilters = function (filters) {
     setAppliedFilters(filters);
   };

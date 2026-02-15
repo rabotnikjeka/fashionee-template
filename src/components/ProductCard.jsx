@@ -24,6 +24,7 @@ const ProductCard = ({
       data-product-id={id}
       data-categories={categories ? categories.join(",").toLowerCase() : ""}
       data-color={color ? color.toLowerCase() : ""}
+      data-price={price}
     >
       <div className="product-image">
         <div className="product-top-side">

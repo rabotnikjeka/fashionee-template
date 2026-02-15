@@ -23,10 +23,18 @@ function App() {
       colors: [],
     },
   );
-  const [allCategories, setAllCategories] = useState([]);
-  const [allColors, setAllColors] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
+  const allCategories =
+    products.length > 0
+      ? ["All", ...new Set(products.flatMap((p) => p.categories || []))]
+      : [];
+  const allColors =
+    products.length > 0
+      ? [...new Set(products.map((p) => p.color).filter(Boolean))]
+      : [];
+  const minPrice =
+    products.length > 0 ? Math.min(...products.map((p) => p.price)) : 0;
+  const maxPrice =
+    products.length > 0 ? Math.max(...products.map((p) => p.price)) : 1000;
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangePage = function (pageName) {

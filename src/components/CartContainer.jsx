@@ -1,18 +1,26 @@
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
 import Cart from "./Cart";
 import "../styles/cart.css";
-
-function CartContainer({ products, cart }) {
+function CartContainer() {
+  const { products, cart } = useContext(ProductContext);
   const isCartProducts = products.filter((item) =>
     cart.some((cartItem) => cartItem.id === item.id),
   );
-
+  const orderPrice = isCartProducts.reduce((total, item) => {
+    const cartItem = cart.find((c) => c.id === item.id);
+    return total + item.price * (cartItem ? cartItem.quantity : 0);
+  }, 0);
+  const deliveryPrice = isCartProducts.length > 0 ? 16 : 0;
+  const totalPrice = orderPrice + deliveryPrice;
   return (
     <div data-testid="cart-page" className="cart-container">
       <div className="order-wrapper">
         <div className="product-list">
           {isCartProducts.map((item) => {
-            const cartProducts = cart.filter((id) => id === item.id).length;
-            return <Cart key={item.id} {...item} cartProducts={cartProducts} />;
+            const cartItem = cart.find((c) => c.id === item.id);
+            const quantity = cartItem ? cartItem.quantity : 0;
+            return <Cart key={item.id} {...item} quantity={quantity} />;
           })}
         </div>
         <div className="order">
@@ -20,7 +28,7 @@ function CartContainer({ products, cart }) {
           <div className="order-price-wraper">
             <div className="price-row">
               <div className="name">Order price</div>
-              <div className="price">$146.98</div>
+              <div className="price">${orderPrice.toFixed(2)}</div>
             </div>
             <div className="price-row">
               <div className="name">Discount for promo code</div>
@@ -31,11 +39,11 @@ function CartContainer({ products, cart }) {
                 Delivery
                 <span className="additional">(Aug 02 at 16:00)</span>
               </div>
-              <div className="price">$16</div>
+              <div className="price">${deliveryPrice}</div>
             </div>
             <div className="price-row total">
               <div className="name">Total</div>
-              <div className="price">$146.98</div>
+              <div className="price">${totalPrice.toFixed(2)}</div>
             </div>
           </div>
           <div className="button-line-wrapper">
@@ -44,7 +52,6 @@ function CartContainer({ products, cart }) {
           </div>
         </div>
       </div>
-
       <div className="promo-code-wrapper">
         <div className="info">
           <div className="title">You Have A Promo Code?</div>
@@ -91,5 +98,4 @@ function CartContainer({ products, cart }) {
     </div>
   );
 }
-
 export default CartContainer;

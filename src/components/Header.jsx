@@ -1,5 +1,8 @@
 import "../styles/Header.css";
-function Header({ favoriteCount, cartCount, onChangePage }) {
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
+function Header() {
+  const { favoriteCount, cartCount, onChangePage } = useContext(ProductContext);
   return (
     <header className="header" data-testid="header">
       <div className="header-upper">

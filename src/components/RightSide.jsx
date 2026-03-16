@@ -2,9 +2,12 @@ import "../styles/shop.css";
 import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import ProductCard from "./ProductCard";
+import { Sort } from "./Sort";
+import { Pagination } from "./Pagination";
 function RightSide() {
-  const { filteredProducts } = useContext(ProductContext);
+  let { filteredProducts } = useContext(ProductContext);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortingType, setSortingType] = useState("by relevance");
   const itemsPerPage = 12;
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
@@ -13,7 +16,23 @@ function RightSide() {
     totalPages > 0
       ? Array.from({ length: totalPages }, (empty, i) => i + 1)
       : [];
-  const visibleProducts = filteredProducts.slice(firstIndex, lastIndex);
+
+  const sortedProduts = [...filteredProducts];
+
+  if (sortingType === "by alphabet") {
+    sortedProduts.sort(function (a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      } else return 0;
+    });
+  } else if (sortingType === "by price") {
+    sortedProduts.sort((a, b) => a.price - b.price);
+  }
+
+  const visibleProducts = sortedProduts.slice(firstIndex, lastIndex);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -31,48 +50,20 @@ function RightSide() {
           </span>
           <span> products in this category</span>
         </div>
-        <div className="sort">
-          <select className="input">
-            <option value="RELEVANCE">Relevance</option>
-            <option value="ASC">ASC</option>
-            <option value="DESC">DESC</option>
-          </select>
-        </div>
+        <Sort setSortingType={setSortingType} />
       </div>
       <div className="showcase">
         {visibleProducts.map((item) => (
           <ProductCard key={item.id} {...item} />
         ))}
       </div>
-      <div className="pagination">
-        <button
-          className="button-arrow-left"
-          onClick={() => setCurrentPage(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          <img src="/icons/leftArrowPage.svg" alt="" />
-        </button>
-        <div className="pages">
-          {arrPages.map((page) => (
-            <button
-              className={page === currentPage ? "page active" : "page"}
-              key={page}
-              onClick={() => changePage(page)}
-            >
-              {page}
-            </button>
-          ))}
-        </div>
-        <button
-          className="button-arrow-right"
-          onClick={() => {
-            setCurrentPage(currentPage + 1);
-          }}
-          disabled={currentPage === totalPages}
-        >
-          <img src="/icons/rightArrowPage.svg" alt="" />
-        </button>
-      </div>
+      <Pagination
+        arrPages={arrPages}
+        currentPage={currentPage}
+        onPageChange={setCurrentPage}
+        changePage={changePage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }

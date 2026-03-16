@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import { Sort } from "./Sort";
 import { Pagination } from "./Pagination";
 function RightSide() {
-  let { filteredProducts } = useContext(ProductContext);
+  const { filteredProducts } = useContext(ProductContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortingType, setSortingType] = useState("by relevance");
   const itemsPerPage = 12;

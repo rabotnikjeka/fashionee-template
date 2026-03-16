@@ -2,6 +2,7 @@ export function Sort({ setSortingType }) {
   return (
     <div className="sort">
       <select
+        data-testid="sort-selector"
         className="input"
         onChange={(e) => {
           setSortingType(e.target.value);

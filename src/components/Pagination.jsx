@@ -10,18 +10,19 @@ export function Pagination({
   return (
     <div className="pagination">
       <button
-        className="button-arrow-left"
         data-testid="previous-page-arrow"
+        className="button-arrow-left"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         <img src="/icons/leftArrowPage.svg" alt="" />
       </button>
-      <div className="pages" data-testid={currentPage}>
+      <div className="pages">
         {arrPages.map((page) => (
           <button
-            className={page === currentPage ? "page active" : "page"}
+            data-testid={`page-${page}`}
             data-active={page === currentPage ? "true" : ""}
+            className={page === currentPage ? "page active" : "page"}
             key={page}
             onClick={() => changePage(page)}
           >
@@ -30,8 +31,8 @@ export function Pagination({
         ))}
       </div>
       <button
-        className="button-arrow-right"
         data-testid="next-page-arrow"
+        className="button-arrow-right"
         onClick={() => {
           onPageChange(currentPage + 1);
         }}

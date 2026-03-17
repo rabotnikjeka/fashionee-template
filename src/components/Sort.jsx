@@ -2,9 +2,6 @@ import { useState } from "react";
 export function Sort({ sortingType, setSortingType }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  if (isOpen) {
-  }
-
   return (
     <div className="sort">
       <div

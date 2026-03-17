@@ -50,7 +50,7 @@ function RightSide() {
           </span>
           <span> products in this category</span>
         </div>
-        <Sort setSortingType={setSortingType} />
+        <Sort setSortingType={setSortingType} sortingType={sortingType} />
       </div>
       <div className="showcase">
         {visibleProducts.map((item) => (

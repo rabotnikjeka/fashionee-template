@@ -1,23 +1,55 @@
-export function Sort({ setSortingType }) {
+import { useState } from "react";
+export function Sort({ sortingType, setSortingType }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (isOpen) {
+  }
+
   return (
     <div className="sort">
-      <select
+      <div
         data-testid="sort-selector"
         className="input"
-        onChange={(e) => {
-          setSortingType(e.target.value);
+        onClick={() => {
+          setIsOpen((prev) => !prev);
         }}
+        style={{ cursor: "pointer" }}
       >
-        <option data-testid="sort-by-relevance" value="by relevance">
-          by relevance
-        </option>
-        <option data-testid="sort-by-alphabet" value="by alphabet">
-          by alphabet
-        </option>
-        <option data-testid="sort-by-price" value="by price">
-          by price
-        </option>
-      </select>
+        {sortingType}
+        <div
+          style={{
+            display: isOpen ? "flex" : "none",
+            flexDirection: "column",
+            cursor: "pointer",
+            border: "1px solid",
+          }}
+        >
+          <div
+            data-testid="sort-by-relevance"
+            onClick={() => {
+              setSortingType("by relevance");
+            }}
+          >
+            by relevance
+          </div>
+          <div
+            data-testid="sort-by-alphabet"
+            onClick={() => {
+              setSortingType("by alphabet");
+            }}
+          >
+            by alphabet
+          </div>
+          <div
+            data-testid="sort-by-price"
+            onClick={() => {
+              setSortingType("by price");
+            }}
+          >
+            by price
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -22,6 +22,7 @@ const ProductCard = ({
       className="product-card"
       data-testid="product-card"
       data-product-id={id}
+      data-name={name}
       data-categories={categories ? categories.join(",").toLowerCase() : ""}
       data-color={color ? color.toLowerCase() : ""}
       data-price={price}

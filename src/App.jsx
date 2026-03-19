@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import ContentBlock from "./components/ContentBlock";
 import Showcase from "./components/Showcase";
 import Newsletter from "./components/Newsletter";
-import CartContainer from "./components/CartContainer";
+import Cart from "./components/Cart";
 import { useState, useEffect } from "react";
 import { ProductContext } from "./context/ProductContext";
 import productsData from "../public/products.json";
@@ -114,7 +114,7 @@ function App() {
   };
   const pages = {
     shop: <Showcase />,
-    cart: <CartContainer />,
+    cart: <Cart />,
   };
   const favoriteCount = favorites.length;
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);

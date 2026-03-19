@@ -44,6 +44,7 @@ function Cart() {
         </div>
         <div className="promo-code">
           <input
+            data-testid="promo-code-input"
             type="text"
             name="promo-code"
             className="input"
@@ -54,6 +55,7 @@ function Cart() {
           />
           <div className="button-line-wrapper">
             <button
+              data-testid="apply-promo-btn"
               className="button"
               onClick={() => {
                 setIsDiscount(discountInput === "ilovereact" ? true : false);

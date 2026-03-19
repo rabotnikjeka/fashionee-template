@@ -5,7 +5,7 @@ export function CartItem({ id, name, price, oldPrice, image, quantity }) {
   const { addCart, removeCart, removeFromCart } = useContext(ProductContext);
   const totalPrice = (price * quantity).toFixed(2);
   return (
-    <div className="cart-product">
+    <div className="cart-product" data-testid="cart-item">
       <div className="photo">
         <img src={image} alt={name} className="cart-image" />
       </div>
@@ -13,7 +13,9 @@ export function CartItem({ id, name, price, oldPrice, image, quantity }) {
         <div className="title">{name}</div>
         <div className="price-wrapper">
           <div className="price-and-quantity">
-            <div className="product-current-price">${price}</div>
+            <div className="product-current-price" data-price>
+              ${price}
+            </div>
             {oldPrice && <div className="product-old-price">${oldPrice}</div>}
             <div className="quantity">
               <button className="count-button" onClick={() => removeCart(id)}>

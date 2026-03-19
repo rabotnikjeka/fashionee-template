@@ -34,7 +34,7 @@ export function CartYourOrder({
         <div className="price-row">
           <div className="name">Order price</div>
           <div className="price" data-testid="order-price">
-            ${orderPrice.toFixed(2)}
+            {orderPrice.toFixed(2)}
           </div>
         </div>
         <div className="price-row">

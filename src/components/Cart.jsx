@@ -26,7 +26,7 @@ function Cart() {
   return (
     <div data-testid="cart-page" className="cart-container">
       <div className="order-wrapper">
-        <CartList cartItems={cartItems} />
+        <CartList cartItems={cartItems} isCartProducts={isCartProducts} />
         <CartYourOrder
           isCartProducts={isCartProducts}
           isDiscount={isDiscount}

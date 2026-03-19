@@ -1,17 +1,14 @@
 .cart-container {
   display: flex;
   flex-direction: column;
-  /* gap: 60px; */
-  /* margin-top: 200px; */
 }
 .cart-container .order-wrapper {
   display: flex;
   justify-content: space-between;
   gap: 60px;
   padding-top: 199px;
-
-  /* align-items: flex-start; */
 }
+
 .cart-container .order-wrapper .product-list {
   max-width: 720px;
   width: 100%;
@@ -21,6 +18,11 @@
   border-bottom: 2px solid black;
   padding-bottom: 10px;
 }
+
+.cart-container .order-wrapper .product-list .empty-cart {
+  text-align: center;
+}
+
 .cart-container .order-wrapper .product-list .cart-product {
   display: flex;
   position: relative;

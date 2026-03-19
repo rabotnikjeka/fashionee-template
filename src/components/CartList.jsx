@@ -1,10 +1,11 @@
 import "../styles/cart.css";
-
 import { CartItem } from "./CartItem";
-const CartList = () => {
+const CartList = ({ cartItems }) => {
   return (
-    <div>
-      <CartItem />
+    <div className="product-list">
+      {cartItems.map((item) => (
+        <CartItem key={item.id} {...item} />
+      ))}
     </div>
   );
 };

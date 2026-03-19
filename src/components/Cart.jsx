@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
-import { CartItem } from "./CartItem";
 import "../styles/cart.css";
 import { CartYourOrder } from "./CartYourOrder";
+import CartList from "./CartList";
 function Cart() {
   const { products, cart } = useContext(ProductContext);
   const [discountInput, setDiscountInput] = useState("");
@@ -11,19 +11,27 @@ function Cart() {
     cart.some((cartItem) => cartItem.id === item.id),
   );
 
+  const cartItems = isCartProducts.map((item) => {
+    const cartItem = cart.find((c) => c.id === item.id);
+    const quantity = cartItem ? cartItem.quantity : 0;
+    return {
+      id: item.id,
+      name: item.name,
+      quantity: quantity,
+      price: item.price,
+      totalPrice: quantity * item.price,
+    };
+  });
+
   return (
     <div data-testid="cart-page" className="cart-container">
       <div className="order-wrapper">
-        <div className="product-list">
-          {isCartProducts.map((item) => {
-            const cartItem = cart.find((c) => c.id === item.id);
-            const quantity = cartItem ? cartItem.quantity : 0;
-            return <CartItem key={item.id} {...item} quantity={quantity} />;
-          })}
-        </div>
+        <CartList cartItems={cartItems} />
         <CartYourOrder
           isCartProducts={isCartProducts}
           isDiscount={isDiscount}
+          discountInput={discountInput}
+          cartItems={cartItems}
         />
       </div>
       <div className="promo-code-wrapper">

@@ -2,16 +2,31 @@ import "../styles/cart.css";
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 
-export function CartYourOrder({ isCartProducts, isDiscount }) {
+export function CartYourOrder({
+  isCartProducts,
+  isDiscount,
+  discountInput,
+  cartItems,
+}) {
   const { cart } = useContext(ProductContext);
 
   const orderPrice = isCartProducts.reduce((total, item) => {
     const cartItem = cart.find((c) => c.id === item.id);
     return total + item.price * (cartItem ? cartItem.quantity : 0);
   }, 0);
-  const discountPrice = isDiscount ? (orderPrice * 10) / 100 : 0;
+  const discount = discountInput === "ilovereact" ? 0.1 : 0;
+  const discountPrice = isDiscount ? orderPrice * discount : 0;
   const deliveryPrice = isCartProducts.length > 0 ? 15 : 0;
   const totalPrice = orderPrice - discountPrice + deliveryPrice;
+
+  const yourOrder = {
+    items: cartItems,
+    promoCode: discountInput,
+    discount: discount,
+    deliveryPrice: deliveryPrice,
+    finalPrice: totalPrice.toFixed(2),
+  };
+
   return (
     <div className="order">
       <div className="title">your order</div>
@@ -45,7 +60,13 @@ export function CartYourOrder({ isCartProducts, isDiscount }) {
         </div>
       </div>
       <div className="button-line-wrapper">
-        <button className="button" data-testid="checkout-btn">
+        <button
+          className="button"
+          data-testid="checkout-btn"
+          onClick={() => {
+            console.log("Your order: ", { yourOrder });
+          }}
+        >
           Checkout
         </button>
         <div className="button-line"></div>

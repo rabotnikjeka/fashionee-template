@@ -23,7 +23,7 @@ export function CartItem({ id, name, price, oldPrice, image, quantity }) {
             <div className="quantity">
               <button
                 className="count-button"
-                data-testid="remove-from-cart-btn"
+                data-testid="decrease-cart-btn"
                 onClick={() => removeCart(id)}
               >
                 -
@@ -40,7 +40,11 @@ export function CartItem({ id, name, price, oldPrice, image, quantity }) {
           </div>
           <div className="total-price">${totalPrice}</div>
         </div>
-        <button className="close" onClick={() => removeFromCart(id)}>
+        <button
+          className="close"
+          data-testid="remove-from-cart-btn"
+          onClick={() => removeFromCart(id)}
+        >
           <img src="/icons/close.svg" alt="" />
         </button>
       </div>

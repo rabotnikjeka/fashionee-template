@@ -54,8 +54,9 @@ export function CartYourOrder({
         </div>
         <div className="price-row total">
           <div className="name">Total</div>
+
           <div className="price" data-testid="total-price">
-            ${totalPrice.toFixed(2)}
+            {totalPrice.toFixed(2)}
           </div>
         </div>
       </div>

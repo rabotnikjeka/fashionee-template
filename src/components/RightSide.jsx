@@ -1,9 +1,10 @@
-import "../styles/shop.css";
+import styles from "../styles/Shop.module.css";
 import { useState, useEffect, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import ProductCard from "./ProductCard";
 import { Sort } from "./Sort";
 import { Pagination } from "./Pagination";
+
 function RightSide() {
   const { filteredProducts } = useContext(ProductContext);
   const [currentPage, setCurrentPage] = useState(1);
@@ -41,18 +42,18 @@ function RightSide() {
     setCurrentPage(page);
   };
   return (
-    <div className="right-side">
-      <div className="count-sort">
-        <div className="count">
+    <div className={styles.rightSide}>
+      <div className={styles.countSort}>
+        <div className={styles.count}>
           <span>There are </span>
-          <span className="bold" data-testid="products-count">
+          <span className={styles.bold} data-testid="products-count">
             {filteredProducts.length}
           </span>
           <span> products in this category</span>
         </div>
         <Sort setSortingType={setSortingType} sortingType={sortingType} />
       </div>
-      <div className="showcase">
+      <div className={styles.showcase}>
         {visibleProducts.map((item) => (
           <ProductCard key={item.id} {...item} />
         ))}

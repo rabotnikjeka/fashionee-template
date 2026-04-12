@@ -1,15 +1,16 @@
-import "../styles/shop.css";
+import styles from "../styles/Shop.module.css";
+
 const Colors = ({ colors, selectedColors, onToggleColor }) => {
   return (
-    <div className="aside-parameters">
-      <div className="parameters-title">Colors</div>
-      <div className="parameters-components">
-        <div className="colors">
+    <div className={styles.asideParameters}>
+      <div className={styles.parametersTitle}>Colors</div>
+      <div className={styles.parametersComponents}>
+        <div className={styles.colors}>
           {colors.map((color) => (
-            <div className="color" key={color}>
+            <div className={styles.color} key={color}>
               <input
                 type="checkbox"
-                className="color-checkbox"
+                className={styles.colorCheckbox}
                 id={color.toLowerCase()}
                 name={color.toLowerCase()}
                 value={color.toLowerCase()}
@@ -18,7 +19,7 @@ const Colors = ({ colors, selectedColors, onToggleColor }) => {
                 onChange={() => onToggleColor(color)}
               />
               <label
-                className="color-checkbox-label"
+                className={styles.colorCheckboxLabel}
                 htmlFor={color.toLowerCase()}
               >
                 {color}

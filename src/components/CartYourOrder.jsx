@@ -1,4 +1,5 @@
-import "../styles/cart.css";
+import styles from "../styles/Cart.module.css";
+import buttonStyles from "../styles/Button.module.css";
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 
@@ -28,41 +29,43 @@ export function CartYourOrder({
   };
 
   return (
-    <div className="order">
-      <div className="title">your order</div>
-      <div className="order-price-wraper">
-        <div className="price-row">
-          <div className="name">Order price</div>
-          <div className="price" data-testid="order-price">
+    <div className={styles.order}>
+      <div className={styles.orderTitle}>your order</div>
+      <div className={styles.orderPriceWraper}>
+        <div className={styles.priceRow}>
+          <div className={styles.name}>Order price</div>
+          <div className={styles.price} data-testid="order-price">
             {orderPrice.toFixed(2)}
           </div>
         </div>
-        <div className="price-row">
-          <div className="name">Discount for promo code</div>
-          <div className="discount" data-testid="discount">
+        <div className={styles.priceRow}>
+          <div className={styles.name}>Discount for promo code</div>
+          <div className={styles.discount} data-testid="discount">
             {isDiscount ? "10%" : "No"}
           </div>
         </div>
-        <div className="price-row delimiter">
-          <div className="name">
+        <div className={`${styles.priceRow} ${styles.delimiter}`}>
+          <div className={styles.name}>
             Delivery
-            <span className="additional">(Aug 02 at 16:00)</span>
+            <span className={styles.additional}>(Aug 02 at 16:00)</span>
           </div>
-          <div className="price" data-testid="delivery">
+          <div className={styles.price} data-testid="delivery">
             ${deliveryPrice}
           </div>
         </div>
-        <div className="price-row total">
-          <div className="name">Total</div>
+        <div className={`${styles.priceRow} ${styles.total}`}>
+          <div className={styles.name}>Total</div>
 
-          <div className="price" data-testid="total-price">
+          <div className={styles.price} data-testid="total-price">
             {totalPrice.toFixed(2)}
           </div>
         </div>
       </div>
-      <div className="button-line-wrapper">
+      <div
+        className={`${buttonStyles.buttonLineWrapper} ${styles.buttonLineWrapper}`}
+      >
         <button
-          className="button"
+          className={`${buttonStyles.button} ${styles.button}`}
           data-testid="checkout-btn"
           onClick={() => {
             console.log("Your order: ", { yourOrder });
@@ -70,7 +73,7 @@ export function CartYourOrder({
         >
           Checkout
         </button>
-        <div className="button-line"></div>
+        <div className={buttonStyles.buttonLine}></div>
       </div>
     </div>
   );

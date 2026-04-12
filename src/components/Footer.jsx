@@ -1,14 +1,20 @@
-import "../styles/Footer.css";
+import styles from "../styles/Footer.module.css";
+import socialStyles from "../styles/SocialLinks.module.css";
+
 function Footer() {
   return (
-    <footer className="footer" data-testid="footer">
-      <img src="/icons/dotsIcon10x10.svg" alt="" className="dots-icon-10" />
-      <img src="/icons/dotsIcon5x5.svg" alt="" className="dots-icon-5" />
+    <footer className={styles.footer} data-testid="footer">
+      <img
+        src="/icons/dotsIcon10x10.svg"
+        alt=""
+        className={styles.dotsIcon10}
+      />
+      <img src="/icons/dotsIcon5x5.svg" alt="" className={styles.dotsIcon5} />
       <div className="container">
-        <div className="footer-info">
-          <div className="column-1">
-            <div className="about-us">
-              <div className="footer-logo">
+        <div className={styles.footerInfo}>
+          <div className={styles.column1}>
+            <div className={styles.aboutUs}>
+              <div className={styles.footerLogo}>
                 <img src="/icons/logo.svg" alt="" />
               </div>
               <span>
@@ -16,30 +22,30 @@ function Footer() {
                 nostrud excepteur voluptate.
               </span>
             </div>
-            <div className="find-us">
-              <div className="find-us-text">Find us here:</div>
-              <div className="social-links">
-                <div className="social-link">
+            <div className={socialStyles.findUs}>
+              <div className={socialStyles.findUsText}>Find us here:</div>
+              <div className={socialStyles.socialLinks}>
+                <div className={socialStyles.socialLink}>
                   <a href="">FB</a>
                 </div>
-                <div className="line"></div>
-                <div className="social-link">
+                <div className={socialStyles.line}></div>
+                <div className={socialStyles.socialLink}>
                   <a href="">TW</a>
                 </div>
-                <div className="line"></div>
-                <div className="social-link">
+                <div className={socialStyles.line}></div>
+                <div className={socialStyles.socialLink}>
                   <a href="">INS</a>
                 </div>
-                <div className="line"></div>
-                <div className="social-link">
+                <div className={socialStyles.line}></div>
+                <div className={socialStyles.socialLink}>
                   <a href="">PT</a>
                 </div>
               </div>
             </div>
           </div>
-          <div className="column-2">
-            <div className="column-title">About</div>
-            <ul className="column-links">
+          <div className={styles.column2}>
+            <div className={styles.columnTitle}>About</div>
+            <ul className={styles.columnLinks}>
               <li>
                 <a href="">About us</a>
               </li>
@@ -57,9 +63,9 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="column-3">
-            <div className="column-title">Useful links</div>
-            <ul className="column-links">
+          <div className={styles.column3}>
+            <div className={styles.columnTitle}>Useful links</div>
+            <ul className={styles.columnLinks}>
               <li>
                 <a href="">Privacy Policy</a>
               </li>
@@ -77,19 +83,19 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="column-4">
-            <div className="column-title">Newsletter</div>
-            <div className="news-letter-text">
+          <div className={styles.column4}>
+            <div className={styles.columnTitle}>Newsletter</div>
+            <div className={styles.newsLetterText}>
               Subscribe to be the first to hear about deals, offers and upcoming
               collections.
             </div>
-            <div className="email-area">
+            <div className={styles.emailArea}>
               <form action="">
                 <label>
                   <input
                     type="text"
                     placeholder="Enter your email"
-                    className="input"
+                    className={styles.input}
                   />
                   <img src="/icons/sendIcon.svg" alt="" />
                 </label>
@@ -97,23 +103,23 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="copyright">
-          <div className="copyright-text">
+        <div className={styles.copyright}>
+          <div className={styles.copyrightText}>
             © All right reserved. Fashionee 2020
           </div>
-          <div className="payment-methods">
-            <div className="payment-methods-text">Payment methods:</div>
-            <div className="payment-methods-units">
-              <div className="payment-methods-unit">
+          <div className={styles.paymentMethods}>
+            <div className={styles.paymentMethodsText}>Payment methods:</div>
+            <div className={styles.paymentMethodsUnits}>
+              <div className={styles.paymentMethodsUnit}>
                 <img src="/icons/imageVisa.svg" alt="visa" />
               </div>
-              <div className="payment-methods-unit">
+              <div className={styles.paymentMethodsUnit}>
                 <img src="/icons/imageMC.svg" alt="master card" />
               </div>
-              <div className="payment-methods-unit">
+              <div className={styles.paymentMethodsUnit}>
                 <img src="/icons/imagePayPal.svg" alt="paypal" />
               </div>
-              <div className="payment-methods-unit">
+              <div className={styles.paymentMethodsUnit}>
                 <img src="/icons/imagePayoneer.svg" alt="payoneer" />
               </div>
             </div>

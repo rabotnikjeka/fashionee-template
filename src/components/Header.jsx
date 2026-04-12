@@ -1,103 +1,107 @@
-import "../styles/Header.css";
+import styles from "../styles/Header.module.css";
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
+
 function Header() {
   const { favoriteCount, cartCount, onChangePage } = useContext(ProductContext);
   return (
-    <header className="header" data-testid="header">
-      <div className="header-upper">
-        <div className="header-left-side">
-          <div className="burger-logo">
-            <div className="burger-menu">
+    <header className={styles.header} data-testid="header">
+      <div className={styles.headerUpper}>
+        <div className={styles.headerLeftSide}>
+          <div className={styles.burgerLogo}>
+            <div className={styles.burgerMenu}>
               <input
                 type="checkbox"
                 id="burger-checkbox"
-                className="burger-checkbox"
+                className={styles.burgerCheckbox}
               />
-              <label className="burger" for="burger-checkbox"></label>
+              <label
+                className={styles.burger}
+                htmlFor="burger-checkbox"
+              ></label>
             </div>
-            <div className="logo">
+            <div className={styles.logo}>
               <img src="/icons/logo.svg" alt="" />
             </div>
           </div>
-          <div className="header-navigation">
-            <div className="header-navigation-unit">
+          <div className={styles.headerNavigation}>
+            <div className={styles.headerNavigationUnit}>
               <a href="">Home</a>
             </div>
-            <div className="header-navigation-unit">
+            <div className={styles.headerNavigationUnit}>
               <span>Pages</span>
               <img
                 src="/icons/arrowdown.svg"
                 alt=""
-                className="regular-arrow"
+                className={styles.regularArrow}
               />
               <img
                 src="/icons/arrowdownPink.svg"
                 alt=""
-                className="hover-arrow"
+                className={styles.hoverArrow}
               />
             </div>
-            <div className="header-navigation-unit active">
+            <div className={`${styles.headerNavigationUnit} ${styles.active}`}>
               <span>Shop</span>
               <img
                 src="/icons/arrowdown.svg"
                 alt=""
-                className="regular-arrow"
+                className={styles.regularArrow}
               />
               <img
                 src="/icons/arrowdownPink.svg"
                 alt=""
-                className="hover-arrow"
+                className={styles.hoverArrow}
               />
             </div>
-            <div className="header-navigation-unit">
+            <div className={styles.headerNavigationUnit}>
               <a href="">Blog</a>
             </div>
-            <div className="header-navigation-unit">
+            <div className={styles.headerNavigationUnit}>
               <a href="">Contact</a>
             </div>
           </div>
         </div>
-        <div className="header-right-side">
-          <div className="header-right-side-icons">
+        <div className={styles.headerRightSide}>
+          <div className={styles.headerRightSideIcons}>
             <img src="/icons/search.svg" alt="" />
           </div>
-          <div className="header-right-side-icons">
+          <div className={styles.headerRightSideIcons}>
             <img src="/icons/profile.svg" alt="" />
           </div>
-          <div className="header-right-side-icons">
+          <div className={styles.headerRightSideIcons}>
             <img src="/icons/favorites.svg" alt="" />
-            <div className="count">
-              <span className="span"></span>
-              <span className="text">{favoriteCount}</span>
+            <div className={styles.count}>
+              <span className={styles.span}></span>
+              <span className={styles.text}>{favoriteCount}</span>
             </div>
           </div>
-          <div className="header-right-side-icons">
+          <div className={styles.headerRightSideIcons}>
             <button
               data-testid="cart-btn"
-              className="cart-button-navigation"
+              className={styles.cartButtonNavigation}
               onClick={() => onChangePage("cart")}
             >
               <img src="/icons/cart.svg" alt="" />
             </button>
 
-            <div className="count">
-              <span className="span"></span>
-              <span className="text">{cartCount}</span>
+            <div className={styles.count}>
+              <span className={styles.span}></span>
+              <span className={styles.text}>{cartCount}</span>
             </div>
           </div>
         </div>
       </div>
-      <div className="header-down">
-        <div className="location-menu">
-          <div className="location-menu-title">Shop</div>
-          <div className="location-menu-navigation">
-            <a href="" className="navigation-item border">
+      <div className={styles.headerDown}>
+        <div className={styles.locationMenu}>
+          <div className={styles.locationMenuTitle}>Shop</div>
+          <div className={styles.locationMenuNavigation}>
+            <a href="" className={`${styles.navigationItem} ${styles.border}`}>
               Home
             </a>
             <button
               data-testid="shop-btn"
-              className="navigation-item active"
+              className={`${styles.navigationItem} ${styles.active}`}
               onClick={(event) => {
                 event.preventDefault();
                 onChangePage("shop");
@@ -106,10 +110,14 @@ function Header() {
               Shop
             </button>
           </div>
-          <div className="border-line"></div>
-          <img src="/icons/dotsIcon12x12.svg" alt="" className="dotsIcon12" />
+          <div className={styles.borderLine}></div>
+          <img
+            src="/icons/dotsIcon12x12.svg"
+            alt=""
+            className={styles.dotsIcon12}
+          />
         </div>
-        <div className="landing-image"></div>
+        <div className={styles.landingImage}></div>
       </div>
     </header>
   );

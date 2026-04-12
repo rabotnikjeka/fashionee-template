@@ -1,3 +1,6 @@
+import styles from "../styles/Shop.module.css";
+import inputStyles from "../styles/Input.module.css";
+
 const Price = ({
   priceMin,
   priceMax,
@@ -7,14 +10,14 @@ const Price = ({
   onChangeMax,
 }) => {
   return (
-    <div className="aside-parameters">
-      <div className="parameters-title">Price</div>
-      <div className="parameters-components">
-        <div className="price-bar">
+    <div className={styles.asideParameters}>
+      <div className={styles.parametersTitle}>Price</div>
+      <div className={styles.parametersComponents}>
+        <div className={styles.priceBar}>
           <input
             type="text"
             placeholder={String(defaultMin)}
-            className="input"
+            className={inputStyles.input}
             data-testid="price-min-input"
             value={priceMin}
             onChange={(e) => onChangeMin(e.target.value)}
@@ -22,7 +25,7 @@ const Price = ({
           <input
             type="text"
             placeholder={String(defaultMax)}
-            className="input"
+            className={inputStyles.input}
             data-testid="price-max-input"
             value={priceMax}
             onChange={(e) => onChangeMax(e.target.value)}

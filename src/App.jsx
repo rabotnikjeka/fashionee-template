@@ -4,16 +4,14 @@ import ContentBlock from "./components/ContentBlock";
 import Showcase from "./components/Showcase";
 import Newsletter from "./components/Newsletter";
 import Cart from "./components/Cart";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ProductContext } from "./context/ProductContext";
 import productsData from "../public/products.json";
+import { useLocalStorage } from "./hooks/useLocalStogage";
+
 function App() {
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites")) || [],
-  );
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("cart")) || [],
-  );
+  const [favorites, setFavorites] = useLocalStorage("favorites", []);
+  const [cart, setCart] = useLocalStorage("cart", []);
   const [products] = useState(productsData.products);
   const [currentPage, setCurrentPage] = useState("shop");
   const [appliedFilters, setAppliedFilters] = useState({
@@ -23,6 +21,7 @@ function App() {
     colors: [],
   });
   const [searchQuery, setSearchQuery] = useState("");
+
   const allCategories =
     products.length > 0
       ? ["All", ...new Set(products.flatMap((p) => p.categories || []))]
@@ -70,18 +69,15 @@ function App() {
       (p) => p.color && appliedFilters.colors.includes(p.color.toLowerCase()),
     );
   }
+
   const onChangePage = function (pageName) {
     return setCurrentPage(pageName);
   };
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+
   const applyFilters = function (filters) {
     setAppliedFilters(filters);
   };
+
   const addFavorites = function (id) {
     setFavorites((prevState) =>
       prevState.includes(id)
@@ -89,6 +85,7 @@ function App() {
         : [...prevState, id],
     );
   };
+
   const addCart = function (id) {
     setCart((prevState) => {
       if (prevState.some((item) => item.id === id)) {
@@ -100,6 +97,7 @@ function App() {
       }
     });
   };
+
   const removeCart = function (id) {
     setCart((prevState) => {
       return prevState
@@ -109,15 +107,19 @@ function App() {
         .filter((item) => item.quantity !== 0);
     });
   };
+
   const removeFromCart = function (id) {
     setCart((prevState) => prevState.filter((item) => item.id !== id));
   };
+
   const pages = {
     shop: <Showcase />,
     cart: <Cart />,
   };
+
   const favoriteCount = favorites.length;
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <ProductContext.Provider
       value={{
@@ -151,4 +153,5 @@ function App() {
     </ProductContext.Provider>
   );
 }
+
 export default App;

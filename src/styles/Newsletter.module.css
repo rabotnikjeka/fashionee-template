@@ -1,0 +1,101 @@
+.newsletterWrapper {
+  margin: 200px auto 120px auto;
+  max-width: 1680px;
+  height: 450px;
+  background-color: #f1f2f3;
+}
+
+.newsletter {
+  position: relative;
+  background-color: white;
+  max-width: 624px;
+  width: 100%;
+  height: 288px;
+  top: 0;
+  left: 275px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 60px;
+}
+
+.dotsIcon5 {
+  position: absolute;
+  right: 30px;
+  top: -33px;
+}
+
+.newsletterTitle {
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+  text-transform: capitalize;
+}
+
+.newsletterDescription {
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  color: #444444;
+}
+
+.emailInputButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.emailArea {
+  max-width: 360px;
+  width: 100%;
+}
+
+.emailRow.input {
+  border: none;
+  border-bottom: 1px solid rgba(68, 68, 68, 20%);
+  color: rgba(68, 68, 68, 50%);
+  outline: none;
+  max-width: 334px;
+  width: 100%;
+  padding: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.buttonLineWrapper {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  align-items: center;
+  color: white;
+  padding: 17px 74px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  text-align: center;
+  max-width: 140px;
+  width: 100%;
+}
+
+.buttonLine {
+  border-right: 2px solid black;
+  height: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+  .newsletterWrapper {
+    display: none;
+  }
+}

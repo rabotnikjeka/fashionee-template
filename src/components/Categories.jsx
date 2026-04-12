@@ -1,15 +1,18 @@
-import "../styles/shop.css";
+import styles from "../styles/Shop.module.css";
+
 const Categories = ({ categories, selectedCategory, onSelectCategory }) => {
   return (
-    <div className="aside-parameters">
-      <div className="parameters-title">Categories</div>
-      <div className="parameters-components">
-        <ul className="categories">
+    <div className={styles.asideParameters}>
+      <div className={styles.parametersTitle}>Categories</div>
+      <div className={styles.parametersComponents}>
+        <ul className={styles.categories}>
           {categories.map((cat) => (
             <li
               key={cat}
               className={
-                selectedCategory === cat ? "category active" : "category"
+                selectedCategory === cat
+                  ? `${styles.category} ${styles.active}`
+                  : styles.category
               }
               data-testid={`filter-category-${cat.toLowerCase()}`}
               onClick={() => onSelectCategory(cat)}

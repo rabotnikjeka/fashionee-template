@@ -1,9 +1,12 @@
-import "../styles/shop.css";
+import styles from "../styles/Shop.module.css";
+import inputStyles from "../styles/Input.module.css";
+import buttonStyles from "../styles/Button.module.css";
 import { useState, useContext, useRef } from "react";
 import { ProductContext } from "../context/ProductContext";
 import Categories from "./Categories";
 import Price from "./Price";
 import Colors from "./Colors";
+
 function LeftSide() {
   const {
     allCategories,
@@ -30,6 +33,7 @@ function LeftSide() {
   const [priceMax, setPriceMax] = useState(String(maxPrice));
   const [localSearch, setLocalSearch] = useState("");
   const debounceTimer = useRef(null);
+
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setLocalSearch(value);
@@ -40,11 +44,13 @@ function LeftSide() {
       setSearchQuery(value);
     }, 300);
   };
+
   const handleToggleColor = (color) => {
     setSelectedColors((prev) =>
       prev.includes(color) ? prev.filter((c) => c !== color) : [...prev, color],
     );
   };
+
   const handleApply = () => {
     const finalMin = priceMin === "" ? String(minPrice) : priceMin;
     const finalMax = priceMax === "" ? String(maxPrice) : priceMax;
@@ -57,14 +63,15 @@ function LeftSide() {
       priceMax: Number(finalMax),
     });
   };
+
   return (
-    <div className="left-side">
-      <div className="search-area">
+    <div className={styles.leftSide}>
+      <div className={styles.searchArea}>
         <label>
           <input
             type="text"
             placeholder="Search"
-            className="input search-row"
+            className={`${inputStyles.input} ${styles.searchRow}`}
             data-testid="search-input"
             value={localSearch}
             onChange={handleSearchChange}
@@ -72,7 +79,7 @@ function LeftSide() {
           <img
             src="/icons/search.svg"
             alt=""
-            className="left-side-search-icon"
+            className={styles.leftSideSearchIcon}
           />
         </label>
       </div>
@@ -94,63 +101,65 @@ function LeftSide() {
         selectedColors={selectedColors}
         onToggleColor={handleToggleColor}
       />
-      <div className="colors-bottom-side">
-        <div className="deploy-colors">
+      <div className={styles.colorsBottomSide}>
+        <div className={styles.deployColors}>
           <img src="/icons/deployArrow.svg" alt="" />
           Deploy
         </div>
-        <div className="button-line-wrapper">
+        <div className={buttonStyles.buttonLineWrapper}>
           <button
-            className="button"
+            className={buttonStyles.button}
             data-testid="apply-filter-btn"
             onClick={handleApply}
           >
             Apply Filter
           </button>
-          <div className="button-line"></div>
+          <div className={buttonStyles.buttonLine}></div>
         </div>
       </div>
-      <div className="aside-parameters">
-        <div className="parameters-title">Reviewed by you</div>
-        <div className="parameters-components">
-          <div className="reviewed-by-you">
-            <div className="recomedation">
-              <div className="recomendation-photo"></div>
-              <div className="recomendation-info">
-                <div className="recomendation-name">Retro style handbag</div>
-                <div className="recomendation-price">
-                  <div className="recomendation current-price">$35.99</div>
-                  <div className="recomendation old-price">$52.99</div>
+      <div className={styles.asideParameters}>
+        <div className={styles.parametersTitle}>Reviewed by you</div>
+        <div className={styles.parametersComponents}>
+          <div className={styles.reviewedByYou}>
+            <div className={styles.recomedation}>
+              <div className={styles.recomedationPhoto}></div>
+              <div className={styles.recomendationInfo}>
+                <div className={styles.recomendationName}>
+                  Retro style handbag
+                </div>
+                <div className={styles.recomendationPrice}>
+                  <div className={styles.recomendationCurrentPrice}>$35.99</div>
+                  <div className={styles.recomendationOldPrice}>$52.99</div>
                 </div>
               </div>
             </div>
-            <div className="recomedation">
-              <div className="recomendation-photo"></div>
-              <div className="recomendation-info">
-                <div className="recomendation-name">Warm casual sweater</div>
-                <div className="recomendation-price">
-                  <div className="recomendation current-price">$35.99</div>
-                  <div className="recomendation old-price"></div>
+            <div className={styles.recomedation}>
+              <div className={styles.recomedationPhoto}></div>
+              <div className={styles.recomendationInfo}>
+                <div className={styles.recomendationName}>
+                  Warm casual sweater
+                </div>
+                <div className={styles.recomendationPrice}>
+                  <div className={styles.recomendationCurrentPrice}>$35.99</div>
                 </div>
               </div>
             </div>
-            <div className="recomedation">
-              <div className="recomendation-photo"></div>
-              <div className="recomendation-info">
-                <div className="recomendation-name">
+            <div className={styles.recomedation}>
+              <div className={styles.recomedationPhoto}></div>
+              <div className={styles.recomendationInfo}>
+                <div className={styles.recomendationName}>
                   Textured turtleneck with zip
                 </div>
-                <div className="recomendation-price">
-                  <div className="recomendation current-price">$35.99</div>
-                  <div className="recomendation old-price"></div>
+                <div className={styles.recomendationPrice}>
+                  <div className={styles.recomendationCurrentPrice}>$35.99</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="aside-parameters">
-        <div className="banner">
+      <div className={styles.asideParameters}>
+        <div className={styles.banner}>
           <a href="">
             <img src="images/bannerSale.svg" alt="" />
           </a>

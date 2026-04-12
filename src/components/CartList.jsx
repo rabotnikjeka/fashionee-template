@@ -1,10 +1,11 @@
-import "../styles/cart.css";
+import styles from "../styles/Cart.module.css";
 import { CartItem } from "./CartItem";
+
 const CartList = ({ cartItems, isCartProducts }) => {
   return (
-    <div className="product-list">
+    <div className={styles.productList}>
       {isCartProducts.length === 0 && (
-        <div className="empty-cart" data-testid="cart-empty">
+        <div className={styles.emptyCart} data-testid="cart-empty">
           Корзина пуста
         </div>
       )}

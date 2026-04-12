@@ -1,0 +1,16 @@
+.productCurrentPrice {
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  text-transform: capitalize;
+}
+
+.productOldPrice {
+  font-family: Josefin Sans;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  text-decoration: line-through;
+}

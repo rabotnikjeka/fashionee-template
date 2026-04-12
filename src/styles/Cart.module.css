@@ -1,15 +1,16 @@
-.cart-container {
+.cartContainer {
   display: flex;
   flex-direction: column;
 }
-.cart-container .order-wrapper {
+
+.orderWrapper {
   display: flex;
   justify-content: space-between;
   gap: 60px;
   padding-top: 199px;
 }
 
-.cart-container .order-wrapper .product-list {
+.productList {
   max-width: 720px;
   width: 100%;
   display: flex;
@@ -19,11 +20,11 @@
   padding-bottom: 10px;
 }
 
-.cart-container .order-wrapper .product-list .empty-cart {
+.emptyCart {
   text-align: center;
 }
 
-.cart-container .order-wrapper .product-list .cart-product {
+.cartProduct {
   display: flex;
   position: relative;
   gap: 30px;
@@ -31,35 +32,29 @@
   padding-bottom: 30px;
   border-bottom: 1px solid rgba(68, 68, 68, 10%);
 }
-.cart-container .order-wrapper .product-list .cart-product .cart-image {
+
+.cartImage {
   max-width: 130px;
   height: 140px;
   object-fit: fill;
   background: rgba(241, 242, 243, 1);
 }
-.cart-container .order-wrapper .product-list .cart-product .product-info {
+
+.productInfo {
   display: flex;
   flex-direction: column;
   gap: 25px;
   width: 100%;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .close {
+
+.close {
   position: absolute;
   top: 0px;
   right: 0px;
   cursor: pointer;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .title {
+
+.title {
   font-family: Josefin Sans;
   font-weight: 400;
   font-size: 20px;
@@ -67,36 +62,21 @@
   text-transform: capitalize;
   color: black;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper {
+
+.priceWrapper {
   display: flex;
   gap: 48px;
   justify-content: space-between;
   position: relative;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper
-  .price-and-quantity {
+
+.priceAndQuantity {
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper
-  .price-and-quantity
-  .quantity {
+
+.quantity {
   position: absolute;
   left: 150px;
   max-width: 109px;
@@ -108,15 +88,8 @@
   align-items: center;
   justify-content: center;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper
-  .price-and-quantity
-  .quantity
-  .count-button {
+
+.countButton {
   cursor: pointer;
   color: rgba(153, 153, 153, 1);
   font-weight: 500;
@@ -124,34 +97,22 @@
   line-height: 100%;
   text-transform: uppercase;
 }
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper
-  .price-and-quantity
-  .quantity
-  .count {
+
+.count {
   font-weight: 400;
   font-size: 16px;
   line-height: 100%;
 }
 
-.cart-container
-  .order-wrapper
-  .product-list
-  .cart-product
-  .product-info
-  .price-wrapper
-  .total-price {
+.totalPrice {
   font-family: Josefin Sans;
   font-weight: 400;
   font-size: 20px;
   line-height: 100%;
   text-transform: capitalize;
 }
-.cart-container .order-wrapper .order {
+
+.order {
   max-width: 360px;
   width: 100%;
   padding: 40px;
@@ -160,7 +121,8 @@
   flex-direction: column;
   gap: 20px;
 }
-.cart-container .order-wrapper .order .title {
+
+.orderTitle {
   font-family: Josefin Sans;
   font-weight: 400;
   font-size: 32px;
@@ -168,12 +130,14 @@
   text-transform: capitalize;
   color: black;
 }
-.cart-container .order-wrapper .order .order-price-wraper {
+
+.orderPriceWraper {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.cart-container .order-wrapper .order .order-price-wraper .price-row {
+
+.priceRow {
   display: flex;
   justify-content: space-between;
   gap: 15px;
@@ -184,25 +148,23 @@
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(68, 68, 68, 10%);
 }
-.cart-container .order-wrapper .order .order-price-wraper .price-row.delimiter {
+
+.priceRow.delimiter {
   border-bottom: 2px solid black;
 }
-.cart-container .order-wrapper .order .order-price-wraper .price-row.total {
+
+.priceRow.total {
   border-bottom: none;
   padding: 0;
 }
-.cart-container
-  .order-wrapper
-  .order
-  .order-price-wraper
-  .price-row
-  .name
-  .additional {
+
+.name .additional {
   font-weight: 400;
   font-size: 14px;
   line-height: 170%;
 }
-.cart-container .order-wrapper .order .order-price-wraper .price-row .price {
+
+.price {
   font-family: Josefin Sans;
   font-weight: 400;
   font-size: 20px;
@@ -211,40 +173,46 @@
   color: rgba(68, 68, 68, 1);
 }
 
-.cart-container .order-wrapper .order .button-line-wrapper {
+.order .buttonLineWrapper {
   max-width: unset;
 }
-.cart-container .order-wrapper .order .button-line-wrapper .button {
+
+.order .buttonLineWrapper .button {
   width: 100%;
   text-align: center;
 }
-.cart-container .promo-code-wrapper {
+
+.promoCodeWrapper {
   max-width: 375px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.cart-container .promo-code-wrapper .promo-code {
+
+.promoCode {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-.cart-container .promo-code-wrapper .promo-code .button-line-wrapper {
+
+.promoCode .buttonLineWrapper {
   max-width: 95px;
 }
 
-.cart-container .promo-code-wrapper .promo-code .button-line-wrapper .button {
+.promoCode .buttonLineWrapper .button {
   max-width: 50px;
   padding: 19px 15px;
 }
-.cart-container .promo-code-wrapper .info {
+
+.info {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding-top: 60px;
 }
-.cart-container .promo-code-wrapper .info .title {
+
+.infoTitle {
   font-family: Josefin Sans;
   font-weight: 400;
   font-size: 32px;
@@ -252,15 +220,18 @@
   text-transform: capitalize;
   color: black;
 }
-.cart-container .promo-code-wrapper .info .description {
+
+.description {
   font-weight: 400;
   font-size: 16px;
   line-height: 170%;
   color: rgba(68, 68, 68, 1);
 }
-.cart-container .promo-code-wrapper .find-us {
+
+.findUs {
   padding: 0;
 }
-.cart-container .promo-code-wrapper .find-us .social-links {
+
+.findUs .socialLinks {
   padding-bottom: 140px;
 }

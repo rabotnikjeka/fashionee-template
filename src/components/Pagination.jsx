@@ -1,4 +1,4 @@
-import "../styles/shop.css";
+import styles from "../styles/Pagination.module.css";
 
 export function Pagination({
   arrPages,
@@ -8,21 +8,25 @@ export function Pagination({
   totalPages,
 }) {
   return (
-    <div className="pagination">
+    <div className={styles.pagination}>
       <button
         data-testid="previous-page-arrow"
-        className="button-arrow-left"
+        className={styles.buttonArrowLeft}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         <img src="/icons/leftArrowPage.svg" alt="" />
       </button>
-      <div className="pages">
+      <div className={styles.pages}>
         {arrPages.map((page) => (
           <button
             data-testid={`page-${page}`}
             data-active={page === currentPage ? "true" : ""}
-            className={page === currentPage ? "page active" : "page"}
+            className={
+              page === currentPage
+                ? `${styles.page} ${styles.active}`
+                : styles.page
+            }
             key={page}
             onClick={() => changePage(page)}
           >
@@ -32,7 +36,7 @@ export function Pagination({
       </div>
       <button
         data-testid="next-page-arrow"
-        className="button-arrow-right"
+        className={styles.buttonArrowRight}
         onClick={() => {
           onPageChange(currentPage + 1);
         }}

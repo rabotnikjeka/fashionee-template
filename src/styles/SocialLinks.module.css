@@ -1,0 +1,34 @@
+.findUs {
+  padding-top: 35px;
+  max-width: 192px;
+  width: 100%;
+}
+
+.findUsText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 15px;
+  padding: 20px 0px 91px 0px;
+  align-items: center;
+  max-width: 192px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.socialLink a {
+  text-decoration: none;
+  color: #444444;
+}
+
+.line {
+  border-bottom: 1px solid #444444;
+  width: 10px;
+}

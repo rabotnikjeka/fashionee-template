@@ -1,0 +1,164 @@
+.productCard {
+  max-width: 262px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.productImage {
+  position: relative;
+}
+
+.image {
+  max-width: 262px;
+  height: 359px;
+  object-fit: fill;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.productName {
+  color: #444444;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.productPriceBuyWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.productPriceWrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.productBuyWrapper {
+  max-width: 200px;
+  width: 100%;
+}
+
+.buyButtonWrapper {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  max-width: 200px;
+  width: 100%;
+}
+
+/* Скрываем кнопку когда товар в корзине */
+.buyButtonWrapper.hidden {
+  display: none;
+}
+
+.buyButton {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  align-items: center;
+  color: white;
+  padding: 5px 48px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  width: 100%;
+  text-align: center;
+}
+
+.buyButtonLine {
+  border-right: 2px solid black;
+  height: 25px;
+}
+
+.addToCartCounter {
+  display: none;
+}
+
+.addToCartCounter.active {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.productTopSide {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 222px;
+}
+
+.favoriteButton {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.favoriteButton .favorites.active {
+  background-color: red;
+}
+
+.label {
+  display: flex;
+  gap: 10px;
+}
+
+.saleLable {
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  background: rgba(255, 142, 142, 1);
+}
+
+.newLable {
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  background: rgba(149, 204, 181, 1);
+}
+
+.increment,
+.decrement {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.count {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .productCard {
+    flex-basis: 200px;
+    flex: 1;
+  }
+}

@@ -1,0 +1,286 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerUpper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1800px;
+  width: 100%;
+  margin: 50px auto;
+}
+
+.headerLeftSide {
+  display: flex;
+  gap: 65px;
+  align-items: center;
+}
+
+.burgerLogo {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.burgerCheckbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.burger {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  border: none;
+  background: transparent;
+  width: 22px;
+  height: 14px;
+  margin: 0px auto;
+}
+
+.burger::before,
+.burger::after {
+  content: "";
+  left: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 10px;
+  background: #000;
+}
+
+.burger::before {
+  top: 0;
+  box-shadow: 0 6px 0 #000;
+  transition:
+    box-shadow 0.3s 0.15s,
+    top 0.3s 0.15s,
+    transform 0.3s;
+}
+
+.burger::after {
+  bottom: 0;
+  transition:
+    bottom 0.3s 0.15s,
+    transform 0.3s;
+}
+
+.burgerCheckbox:checked + .burger::before {
+  top: 6px;
+  transform: rotate(45deg);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0);
+  transition:
+    box-shadow 0.15s,
+    top 0.3s,
+    transform 0.3s 0.15s;
+}
+
+.burgerCheckbox:checked + .burger::after {
+  bottom: 6px;
+  transform: rotate(-45deg);
+  transition:
+    bottom 0.3s,
+    transform 0.3s 0.15s;
+}
+
+.logo {
+  display: block;
+  width: 110px;
+  height: 18px;
+}
+
+.burgerMenu {
+  display: block;
+  width: 22px;
+  height: 14px;
+}
+
+.headerNavigation {
+  display: flex;
+  gap: 40px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.headerNavigationUnit {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.headerNavigationUnit a {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  color: #444444;
+}
+
+.headerNavigationUnit.active .regularArrow {
+  display: none;
+}
+
+.headerNavigationUnit.active .hoverArrow {
+  display: inline-block;
+}
+
+.headerNavigationUnit:hover,
+.headerNavigationUnit.active {
+  color: #ff8e8e;
+}
+
+.hoverArrow {
+  display: none;
+}
+
+.headerNavigationUnit:hover .hoverArrow {
+  display: inline-block;
+}
+
+.headerNavigationUnit:hover .regularArrow {
+  display: none;
+}
+
+.headerRightSide {
+  display: flex;
+  gap: 40px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.headerRightSideIcons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cartButtonNavigation {
+  background: none;
+  border: none;
+}
+
+.headerRightSideIcons img {
+  cursor: pointer;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.span {
+  display: inline-block;
+  align-items: center;
+  background-color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 50% 0;
+  width: 100%;
+  position: absolute;
+  margin-left: 4px;
+}
+
+.text {
+  color: white;
+  position: relative;
+  top: 0;
+  left: 4px;
+  padding: 0px 6px;
+}
+
+.headerDown {
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+}
+
+.locationMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 332px;
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.locationMenuTitle {
+  position: absolute;
+  top: 111px;
+  left: 390px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 100%;
+  text-transform: capitalize;
+}
+
+.locationMenuNavigation {
+  display: flex;
+  gap: 12px;
+  position: absolute;
+  bottom: 86px;
+  left: 390px;
+}
+
+.navigationItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  text-transform: capitalize;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+
+.navigationItem.border {
+  border-left: 2px solid black;
+  padding-left: 12px;
+}
+
+.navigationItem.active {
+  color: #ff8e8e;
+  border: none;
+  background: none;
+}
+
+.navigationItem:hover {
+  color: #ff8e8e;
+}
+
+.borderLine {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid black;
+  padding-top: 64px;
+}
+
+.dotsIcon12 {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.landingImage {
+  background-color: #f1f2f3;
+  height: 400px;
+  max-width: 800px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1800px) {
+  .headerDown {
+    flex-direction: column;
+    align-items: center;
+  }
+  .locationMenu {
+    align-items: center;
+  }
+}

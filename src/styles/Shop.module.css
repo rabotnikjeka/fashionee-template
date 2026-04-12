@@ -1,0 +1,274 @@
+.shopFill {
+  display: flex;
+  gap: 50px;
+  margin-top: 200px;
+}
+
+.leftSide {
+  max-width: 244px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.searchArea {
+  position: relative;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.searchRow {
+  padding: 0 25px 15px 0;
+}
+
+.leftSideSearchIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.asideParameters {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.parametersTitle {
+  border-bottom: 2px solid black;
+  padding-bottom: 14px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.parametersComponents {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories {
+  margin-left: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  max-height: 188px;
+  height: 100%;
+}
+
+.category {
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.category::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-image: url("../icons/squareListIcon.svg");
+  background-repeat: no-repeat;
+}
+
+.category.active::before {
+  content: "";
+  display: block;
+  background-image: url("../icons/lineActiveCategory.svg");
+  width: 25px;
+  height: 3px;
+}
+
+.category.active,
+.category:hover {
+  color: #ff8e8e;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category:hover:not(.active)::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-image: url("../icons/squareListIconHover.svg");
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.color {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.colorCheckbox {
+  appearance: none;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #eeeeee;
+}
+
+.colorCheckbox::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  background-image: url("../icons/checkPink.svg");
+  background-repeat: no-repeat;
+}
+
+.colorCheckbox:checked::after {
+  width: 15px;
+  height: 15px;
+}
+
+.colorCheckbox:checked + .colorCheckboxLabel {
+  color: #ff8e8e;
+}
+
+.colorCheckboxLabel {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  cursor: pointer;
+}
+
+.colorsBottomSide {
+  display: flex;
+  flex-direction: column;
+}
+
+.deployColors {
+  display: flex;
+  gap: 15px;
+  margin-top: 23px;
+  margin-bottom: 40px;
+  color: #ff8e8e;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.reviewedByYou {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recomedation {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.recomedationPhoto {
+  background-color: #f1f2f3;
+  height: 85px;
+  max-width: 75px;
+  width: 100%;
+}
+
+.recomendationName {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+.recomendationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.recomendationPrice {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.recomendationCurrentPrice {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.recomendationOldPrice {
+  font-weight: 300;
+  font-size: 12px;
+  text-decoration: line-through;
+}
+
+.rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 846px;
+  width: 100%;
+}
+
+.countSort {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px 30px;
+  max-height: 1910px;
+  height: 100%;
+}
+
+.sort {
+  max-width: 262px;
+  width: 100%;
+}
+
+.count {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.count .bold {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+@media screen and (max-width: 1200px) {
+  .newsletterWrapper {
+    display: none;
+  }
+}

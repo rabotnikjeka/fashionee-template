@@ -1,0 +1,11 @@
+.input {
+  border: none;
+  border-bottom: 1px solid rgba(68, 68, 68, 20%);
+  color: rgba(68, 68, 68, 50%);
+  outline: none;
+  width: 100%;
+  padding: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}

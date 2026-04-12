@@ -1,12 +1,15 @@
 import { useState } from "react";
+import styles from "../styles/Shop.module.css";
+import inputStyles from "../styles/Input.module.css";
+
 export function Sort({ sortingType, setSortingType }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sort">
+    <div className={styles.sort}>
       <div
         data-testid="sort-selector"
-        className="input"
+        className={inputStyles.input}
         onClick={() => {
           setIsOpen((prev) => !prev);
         }}

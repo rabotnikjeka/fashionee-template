@@ -65,7 +65,6 @@ const ProductCard = ({
             )}
           </div>
           <div className={styles.productBuyWrapper}>
-            {/* Условно отображаем кнопку или счетчик */}
             <div
               className={
                 isOnCart

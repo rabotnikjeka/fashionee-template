@@ -1,0 +1,32 @@
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
+}
+
+.count-sort {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.showcase {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px 30px;
+  max-height: 1910px;
+  height: 100%;
+}
+
+.count {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.count .bold {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 170%;
+}

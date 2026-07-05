@@ -1,0 +1,74 @@
+.aside-parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.parameters-title {
+  border-bottom: 2px solid black;
+  padding-bottom: 14px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.parameters-components {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories {
+  margin-left: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  max-height: 188px;
+  height: 100%;
+}
+
+.category {
+  height: 27px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 170%;
+}
+
+.category::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-image: url("../../icons/squareListIcon.svg");
+  background-repeat: no-repeat;
+}
+
+.category.active::before {
+  content: "";
+  display: block;
+  background-image: url("../../icons/lineActiveCategory.svg");
+  width: 25px;
+  height: 3px;
+}
+
+.category.active,
+.category:hover {
+  color: #ff8e8e;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category:hover:not(.active)::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-image: url("../../icons/squareListIconHover.svg");
+}

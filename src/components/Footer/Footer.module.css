@@ -1,0 +1,167 @@
+.footer {
+  border-top: 20px solid rgba(238, 238, 238, 1);
+  padding-top: 110px;
+  margin: 0 auto;
+  margin-top: 110px;
+  width: 100%;
+  height: 370px;
+  position: relative;
+}
+
+.dots-icon5 {
+  position: absolute;
+  left: 30px;
+  top: 50px;
+  pointer-events: none;
+}
+
+.dots-icon10 {
+  position: absolute;
+  right: 30px;
+  top: 105px;
+  pointer-events: none;
+}
+
+.footer-info {
+  display: flex;
+}
+
+.column-title {
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  text-transform: capitalize;
+}
+
+.column1 {
+  max-width: 331px;
+  width: 100%;
+}
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+  max-width: 331px;
+  gap: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(68, 68, 68, 20%);
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.column2 {
+  margin-left: 75px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.column-links {
+  font-family: Raleway;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.column2 .column-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: square;
+}
+
+.column2 .column-links a {
+  text-decoration: none;
+  color: #444444;
+}
+
+.column3 {
+  margin-left: 123px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 119px;
+  width: 100%;
+}
+
+.column3 .column-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: square;
+}
+
+.column3 .column-links a {
+  text-decoration: none;
+  color: #444444;
+}
+
+.column4 {
+  margin-left: 74px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.news-letter-text {
+  margin: 16px 0 36px 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.email-area {
+  position: relative;
+  width: 100%;
+}
+
+.email-area .input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(68, 68, 68, 20%);
+  padding-bottom: 16px;
+  outline: none;
+  padding-right: 25px;
+}
+
+.email-area img {
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  cursor: pointer;
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(68, 68, 68, 20%);
+  padding-top: 23px;
+  margin-bottom: 23px;
+}
+
+.copyright-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.payment-methods-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  text-transform: capitalize;
+}
+
+.payment-methods-units {
+  display: flex;
+  gap: 8px;
+}

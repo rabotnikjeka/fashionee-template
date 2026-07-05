@@ -1,0 +1,70 @@
+.aside-parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.parameters-title {
+  border-bottom: 2px solid black;
+  padding-bottom: 14px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.parameters-components {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.color {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.color-checkbox {
+  appearance: none;
+  position: relative;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #eeeeee;
+}
+
+.color-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  background-image: url("../../icons/checkPink.svg");
+  background-repeat: no-repeat;
+}
+
+.color-checkbox:checked::after {
+  width: 15px;
+  height: 15px;
+}
+
+.color-checkbox:checked + .color-checkbox-label {
+  color: #ff8e8e;
+}
+
+.color-checkbox-label {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  cursor: pointer;
+}

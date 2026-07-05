@@ -1,0 +1,19 @@
+.aside-parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.parameters-title {
+  border-bottom: 2px solid black;
+  padding-bottom: 14px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.parameters-components {
+  display: flex;
+  flex-direction: column;
+}

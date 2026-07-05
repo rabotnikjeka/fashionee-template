@@ -1,0 +1,110 @@
+.left-side {
+  max-width: 244px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.search-area {
+  position: relative;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.search-row {
+  padding: 0 25px 15px 0;
+}
+
+.left-side-search-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.aside-parameters {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.parameters-title {
+  border-bottom: 2px solid black;
+  padding-bottom: 14px;
+  font-family: Josefin Sans;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.parameters-components {
+  display: flex;
+  flex-direction: column;
+}
+
+.colors-bottom-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.deploy-colors {
+  display: flex;
+  gap: 15px;
+  margin-top: 23px;
+  margin-bottom: 40px;
+  color: #ff8e8e;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.reviewed-by-you {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recomedation {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.recomedation-photo {
+  background-color: #f1f2f3;
+  height: 85px;
+  max-width: 75px;
+  width: 100%;
+}
+
+.recomendation-name {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+.recomendation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.recomendation-price {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.recomendation-current-price {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.recomendation-old-price {
+  font-weight: 300;
+  font-size: 12px;
+  text-decoration: line-through;
+}
